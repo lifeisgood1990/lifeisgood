@@ -1071,6 +1071,9 @@ pre .javascript .function {
 .header {
   background: transparent;
 }
+.header {
+  background: url("../image/avatar.jpg");
+}
 .header-inner {
   position: relative;
 }
@@ -1807,7 +1810,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fff1ff;
+  background: #1226ff;
 }
 .links-of-blogroll {
   font-size: 13px;
