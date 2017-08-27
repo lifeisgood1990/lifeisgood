@@ -457,7 +457,7 @@
             <h3 id="String-–-gt-JSON"><a href="#String-–-gt-JSON" class="headerlink" title="String –&gt; JSON"></a>String –&gt; JSON</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">JSON.parse(data)</div></pre></td></tr></table></figure>
 <h3 id="JSON-–-gt-String"><a href="#JSON-–-gt-String" class="headerlink" title="JSON –&gt; String"></a>JSON –&gt; String</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">JSON.stringify(data)</div></pre></td></tr></table></figure>
 <h3 id="select-selected"><a href="#select-selected" class="headerlink" title="select selected"></a>select selected</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#linkWay input[value='</span>+data.linkWay+<span class="string">']'</span>).attr(<span class="string">"checked"</span>,<span class="literal">true</span>);</div><div class="line">$(<span class="string">'#ownerId option[value='</span>+data.owner.id+<span class="string">']'</span>).attr(<span class="string">"selected"</span>,<span class="literal">true</span>);</div></pre></td></tr></table></figure>
-<p>获取父页面<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(selector,window.parent.document)</div></pre></td></tr></table></figure></p>
+<h3 id="获取父页面"><a href="#获取父页面" class="headerlink" title="获取父页面"></a>获取父页面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(selector,window.parent.document)</div></pre></td></tr></table></figure>
 
           
         
@@ -628,6 +628,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -671,7 +675,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -684,7 +688,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
