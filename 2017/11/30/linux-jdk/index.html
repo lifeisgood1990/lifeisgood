@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="1.在/usr/目录下创建java目录12[root@localhost ~]# mkdir/usr/java[root@localhost ~]# cd /usr/java 2.解压jdk1[root@localhost java]# tar -zxvf jdk-7u79-linux-x64.tar.gz 3.设置环境变量1[root@localhost java]# vi /etc/profi">
+<meta name="description" content="1.在/usr/目录下创建java目录12[root@localhost ~]# mkdir/usr/java[root@localhost ~]# cd /usr/java 2.解压jdk1[root@localhost java]# tar -zxvf jdk-7u79-linux-x64.tar.gz">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux 安装jdk">
 <meta property="og:url" content="http://yoursite.com/2017/11/30/linux-jdk/index.html">
 <meta property="og:site_name" content="yang的随记">
-<meta property="og:description" content="1.在/usr/目录下创建java目录12[root@localhost ~]# mkdir/usr/java[root@localhost ~]# cd /usr/java 2.解压jdk1[root@localhost java]# tar -zxvf jdk-7u79-linux-x64.tar.gz 3.设置环境变量1[root@localhost java]# vi /etc/profi">
+<meta property="og:description" content="1.在/usr/目录下创建java目录12[root@localhost ~]# mkdir/usr/java[root@localhost ~]# cd /usr/java 2.解压jdk1[root@localhost java]# tar -zxvf jdk-7u79-linux-x64.tar.gz">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-02T12:32:55.883Z">
+<meta property="og:updated_time" content="2017-12-02T13:08:25.778Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux 安装jdk">
-<meta name="twitter:description" content="1.在/usr/目录下创建java目录12[root@localhost ~]# mkdir/usr/java[root@localhost ~]# cd /usr/java 2.解压jdk1[root@localhost java]# tar -zxvf jdk-7u79-linux-x64.tar.gz 3.设置环境变量1[root@localhost java]# vi /etc/profi">
+<meta name="twitter:description" content="1.在/usr/目录下创建java目录12[root@localhost ~]# mkdir/usr/java[root@localhost ~]# cd /usr/java 2.解压jdk1[root@localhost java]# tar -zxvf jdk-7u79-linux-x64.tar.gz">
 
 
 
@@ -332,6 +332,7 @@
       
         <p>1.在/usr/目录下创建java目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]<span class="comment"># mkdir/usr/java</span></div><div class="line">[root@localhost ~]<span class="comment"># cd /usr/java</span></div></pre></td></tr></table></figure></p>
 <p>2.解压jdk<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@localhost java]<span class="comment"># tar -zxvf jdk-7u79-linux-x64.tar.gz</span></div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>3.设置环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@localhost java]<span class="comment"># vi /etc/profile</span></div></pre></td></tr></table></figure></p>
 <p>在打开的profile文件中添加如下内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#set java environment</span></div><div class="line">JAVA_HOME=/usr/java/jdk1.7.0_79</div><div class="line">JRE_HOME=/usr/java/jdk1.7.0_79/jre</div><div class="line">CLASS_PATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JRE_HOME</span>/lib</div><div class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JRE_HOME</span>/bin</div><div class="line"><span class="built_in">export</span> JAVA_HOME JRE_HOME CLASS_PATH PATH</div></pre></td></tr></table></figure></p>
 <p>让修改生效<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@localhost java]<span class="comment"># source /etc/profile</span></div></pre></td></tr></table></figure></p>

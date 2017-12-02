@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="yang的随记">
 <meta property="og:description" content="1.查看是否安装mysql1rpm -qa|grep -i mysql 删除之前安装的mysql1rpm -e –nodeps 包名 查找之前老版本mysql的目录、并且删除老版本mysql的文件和库1234567---&amp;gt; find / -name mysql/var/lib/mysql/var/lib/mysql/mysql/usr/lib64/mysql--&amp;gt;rm -rf /var">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-02T12:37:37.811Z">
+<meta property="og:updated_time" content="2017-12-02T13:08:48.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux mysql安装">
 <meta name="twitter:description" content="1.查看是否安装mysql1rpm -qa|grep -i mysql 删除之前安装的mysql1rpm -e –nodeps 包名 查找之前老版本mysql的目录、并且删除老版本mysql的文件和库1234567---&amp;gt; find / -name mysql/var/lib/mysql/var/lib/mysql/mysql/usr/lib64/mysql--&amp;gt;rm -rf /var">
@@ -333,6 +333,7 @@
         <p>1.查看是否安装mysql<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -qa|grep -i mysql</div></pre></td></tr></table></figure></p>
 <p>删除之前安装的mysql<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -e –nodeps 包名</div></pre></td></tr></table></figure></p>
 <p>查找之前老版本mysql的目录、并且删除老版本mysql的文件和库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">---&gt; find / -name mysql</div><div class="line">/var/lib/mysql</div><div class="line">/var/lib/mysql/mysql</div><div class="line">/usr/lib64/mysql</div><div class="line">--&gt;rm -rf /var/lib/mysql</div><div class="line">--&gt;rm -rf /var/lib/mysql</div><div class="line">--&gt;rm -rf /usr/lib64/mysql</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>2.安装三个rpm软件包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">--&gt;rpm -ivh MySQL-server-5.6.21-1.rhel5.x86_64.rpm</div><div class="line">--&gt;rpm -ivh MySQL-client-5.6.21-1.rhel5.x86_64.rpm</div><div class="line">--&gt;rpm -ivh MySQL-devel-5.6.21-1.rhel5.x86_64.rpm</div></pre></td></tr></table></figure></p>
 <p>安装mysql会初始一个随机密码 在/root/.mysql_secret中 执行命令查看密码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">more /root/.mysql_secret</div></pre></td></tr></table></figure></p>
 <p>3.初始化并启动MySQL及修改MySQL默认的root密码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/mysql start</div><div class="line">---&gt;Shutting down MySQL.. SUCCESS!</div><div class="line">mysql&gt; mysql -u root -p</div><div class="line">mysql&gt; <span class="built_in">set</span> password=password(<span class="string">'123456'</span>);</div></pre></td></tr></table></figure></p>
