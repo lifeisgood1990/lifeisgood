@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="linux1234567891011cp -r apache-tomcat-8.0.46.tar.gz ../webunzip file.zip  解压文件tar –xvf file.tar //解压 tar包tar -xzvf file.tar.gz //解压tar.gztar -xjvf file.tar.bz2 //解压 tar.bz2tar –xZvf file.tar.Z //解压tar">
+<meta name="description" content="1.yum install svnserve1yum -y install subversion 2.create svnrepos1mkdir /var/svn/svnrepos 3.create svn 版本库12svnadmin create /var/svn/svnrepos/salarycd /var/svn/svnrepos/salary">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux">
-<meta property="og:url" content="http://dobetter.site/2017/09/13/linux/index.html">
+<meta property="og:title" content="linux install svn">
+<meta property="og:url" content="http://dobetter.site/2018/04/11/linux-svn/index.html">
 <meta property="og:site_name" content="Yang&#39;s Notes">
-<meta property="og:description" content="linux1234567891011cp -r apache-tomcat-8.0.46.tar.gz ../webunzip file.zip  解压文件tar –xvf file.tar //解压 tar包tar -xzvf file.tar.gz //解压tar.gztar -xjvf file.tar.bz2 //解压 tar.bz2tar –xZvf file.tar.Z //解压tar">
+<meta property="og:description" content="1.yum install svnserve1yum -y install subversion 2.create svnrepos1mkdir /var/svn/svnrepos 3.create svn 版本库12svnadmin create /var/svn/svnrepos/salarycd /var/svn/svnrepos/salary">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-02T13:04:34.985Z">
+<meta property="og:updated_time" content="2018-04-11T11:14:29.587Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux">
-<meta name="twitter:description" content="linux1234567891011cp -r apache-tomcat-8.0.46.tar.gz ../webunzip file.zip  解压文件tar –xvf file.tar //解压 tar包tar -xzvf file.tar.gz //解压tar.gztar -xjvf file.tar.bz2 //解压 tar.bz2tar –xZvf file.tar.Z //解压tar">
+<meta name="twitter:title" content="linux install svn">
+<meta name="twitter:description" content="1.yum install svnserve1yum -y install subversion 2.create svnrepos1mkdir /var/svn/svnrepos 3.create svn 版本库12svnadmin create /var/svn/svnrepos/salarycd /var/svn/svnrepos/salary">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://dobetter.site/2017/09/13/linux/"/>
+  <link rel="canonical" href="http://dobetter.site/2018/04/11/linux-svn/"/>
 
 
 
 
 
-  <title>linux | Yang's Notes</title>
+  <title>linux install svn | Yang's Notes</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://dobetter.site/2017/09/13/linux/">
+    <link itemprop="mainEntityOfPage" href="http://dobetter.site/2018/04/11/linux-svn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YF">
@@ -279,7 +279,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">linux</h2>
+          <h2 class="post-title" itemprop="name headline">linux install svn</h2>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-13T21:36:24+08:00">
-                2017-09-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-11T10:29:29+08:00">
+                2018-04-11
               </time>
             
 
@@ -329,9 +329,20 @@
       
 
       
-        <h3 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">cp -r apache-tomcat-8.0.46.tar.gz ../web</div><div class="line">unzip file.zip  解压文件</div><div class="line">tar –xvf file.tar //解压 tar包</div><div class="line">tar -xzvf file.tar.gz //解压tar.gz</div><div class="line">tar -xjvf file.tar.bz2 //解压 tar.bz2</div><div class="line">tar –xZvf file.tar.Z //解压tar.Z</div><div class="line">unrar e file.rar //解压rar</div><div class="line">unzip file.zip //解压zip</div><div class="line">rm               删除文件</div><div class="line">   -r            递归删除，可删除子目录及文件</div><div class="line">   -f            强制删除</div></pre></td></tr></table></figure>
-<p>vim 操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">U //撤销上一步操作</div><div class="line">ctrl + r //恢复上一步被撤销的操作</div><div class="line">/pattern  //向下查找pattern匹配字符串</div><div class="line">?pattern //向上查找pattern匹配字符串</div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">find / -name tomcat  //找tomcat文件</div><div class="line">ps -ef|grep tomcat  //查看tomcat进程</div><div class="line">mv A B  // 将A重命名为B</div></pre></td></tr></table></figure>
+        <p>1.yum install svnserve<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install subversion</div></pre></td></tr></table></figure></p>
+<p>2.create svnrepos<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir /var/svn/svnrepos</div></pre></td></tr></table></figure></p>
+<p>3.create svn 版本库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">svnadmin create /var/svn/svnrepos/salary</div><div class="line"><span class="built_in">cd</span> /var/svn/svnrepos/salary</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>4.modify config file<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /var/svn/svnrepos/salary</div><div class="line">ll </div><div class="line">-rw-r--r-- 1 root root 1097 Apr 11 10:50 authz</div><div class="line">-rw-r--r-- 1 root root  326 Apr 11 10:58 passwd</div><div class="line">-rw-r--r-- 1 root root 2265 Apr 11 15:11 svnserve.conf</div></pre></td></tr></table></figure></p>
+<p>authz：负责账号权限的管理，控制账号是否读写权限<br>passwd：负责账号和密码的用户名单管理<br>svnserve.conf：svn服务器配置文件<br>modify authz<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi authz</div></pre></td></tr></table></figure></p>
+<p>在文件末尾添加 用户名和读写权限 rw read write []中的斜杠,一定是反斜杠<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[\]</div><div class="line">example = rw</div></pre></td></tr></table></figure></p>
+<p>modify passwd<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">example = 123456</div></pre></td></tr></table></figure></p>
+<p>modify svnserve.conf<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[general]</div><div class="line"><span class="comment"># 非鉴权用户没有权限</span></div><div class="line">anon-access = none</div><div class="line"><span class="comment"># 鉴权用户有写权限</span></div><div class="line">auth-access = write</div><div class="line"><span class="comment"># 指定用户名口令文件名</span></div><div class="line">password-db = passwd</div><div class="line"><span class="comment">#authz-db = authz</span></div><div class="line">realm = My First Repository</div></pre></td></tr></table></figure></p>
+<p>#authz-db = authz 要注释掉 不注释掉 会出现svn 认证失败<br>5.防火墙开启<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;/sbin/iptables -I INPUT -p tcp --dport 3690 -j ACCEPT</div><div class="line">&gt;/etc/init.d/iptables save</div><div class="line">&gt;service iptables restart</div></pre></td></tr></table></figure></p>
+<p>6.启动svn服务器<br><code>bash
+svnserve -d -r /var/svn/svnrepos
+ps -ef|grep svn
+kill -9 端口号</code>bash<br>7.客户端访问svn<br>输入地址：svn://ip:3690/salary</p>
 
       
     </div>
@@ -356,8 +367,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/03/mac-os/" rel="next" title="Mac 技巧">
-                <i class="fa fa-chevron-left"></i> Mac 技巧
+              <a href="/2017/12/30/frontend-backend-separate/" rel="next" title="前后端分离跨越问题">
+                <i class="fa fa-chevron-left"></i> 前后端分离跨越问题
               </a>
             
           </div>
@@ -365,10 +376,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/30/linux-jdk/" rel="prev" title="linux 安装jdk">
-                linux 安装jdk <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -420,17 +427,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/upload/title.jpg"
@@ -483,22 +481,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#linux"><span class="nav-number">1.</span> <span class="nav-text">linux</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
