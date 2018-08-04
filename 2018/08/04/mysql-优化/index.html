@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="linux," />
+  <meta name="keywords" content="msyql," />
 
 
 
@@ -94,18 +94,21 @@
 
 
 
-<meta name="description" content="1.在/usr/目录下创建java目录12[root@localhost ~]# mkdir/usr/java[root@localhost ~]# cd /usr/java 2.解压jdk1[root@localhost java]# tar -zxvf jdk-7u79-linux-x64.tar.gz">
-<meta name="keywords" content="linux">
+<meta name="description" content="1.根据表的情况，如果表的id记录自增，不会删除表中的记录，可以通过1selec max（id） from tablename 2.﻿ 翻页查询的优化,随着记录数的增加，limit会越来越慢，例如limit 850000,50，这是可以通过id between 850000 and 850050语句优化">
+<meta name="keywords" content="msyql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux 安装jdk">
-<meta property="og:url" content="http://dobetter.site/2017/11/30/linux-jdk/index.html">
+<meta property="og:title" content="mysql 优化">
+<meta property="og:url" content="http://dobetter.site/2018/08/04/mysql-优化/index.html">
 <meta property="og:site_name" content="Yang&#39;s Notes">
-<meta property="og:description" content="1.在/usr/目录下创建java目录12[root@localhost ~]# mkdir/usr/java[root@localhost ~]# cd /usr/java 2.解压jdk1[root@localhost java]# tar -zxvf jdk-7u79-linux-x64.tar.gz">
+<meta property="og:description" content="1.根据表的情况，如果表的id记录自增，不会删除表中的记录，可以通过1selec max（id） from tablename 2.﻿ 翻页查询的优化,随着记录数的增加，limit会越来越慢，例如limit 850000,50，这是可以通过id between 850000 and 850050语句优化">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-02T13:08:25.778Z">
+<meta property="og:image" content="http://ovc1p8kdo.bkt.clouddn.com/sql_lianhe.png">
+<meta property="og:image" content="http://ovc1p8kdo.bkt.clouddn.com/%E5%BC%BA%E5%88%B6%E7%B4%A2%E5%BC%95.png">
+<meta property="og:updated_time" content="2018-08-04T11:10:11.188Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux 安装jdk">
-<meta name="twitter:description" content="1.在/usr/目录下创建java目录12[root@localhost ~]# mkdir/usr/java[root@localhost ~]# cd /usr/java 2.解压jdk1[root@localhost java]# tar -zxvf jdk-7u79-linux-x64.tar.gz">
+<meta name="twitter:title" content="mysql 优化">
+<meta name="twitter:description" content="1.根据表的情况，如果表的id记录自增，不会删除表中的记录，可以通过1selec max（id） from tablename 2.﻿ 翻页查询的优化,随着记录数的增加，limit会越来越慢，例如limit 850000,50，这是可以通过id between 850000 and 850050语句优化">
+<meta name="twitter:image" content="http://ovc1p8kdo.bkt.clouddn.com/sql_lianhe.png">
 
 
 
@@ -134,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://dobetter.site/2017/11/30/linux-jdk/"/>
+  <link rel="canonical" href="http://dobetter.site/2018/08/04/mysql-优化/"/>
 
 
 
 
 
-  <title>linux 安装jdk | Yang's Notes</title>
+  <title>mysql 优化 | Yang's Notes</title>
   
 
 
@@ -263,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://dobetter.site/2017/11/30/linux-jdk/">
+    <link itemprop="mainEntityOfPage" href="http://dobetter.site/2018/08/04/mysql-优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YF">
@@ -280,7 +283,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">linux 安装jdk</h2>
+          <h2 class="post-title" itemprop="name headline">mysql 优化</h2>
         
 
         <div class="post-meta">
@@ -292,8 +295,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-30T10:21:35+08:00">
-                2017-11-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-04T18:47:04+08:00">
+                2018-08-04
               </time>
             
 
@@ -330,14 +333,13 @@
       
 
       
-        <p>1.在/usr/目录下创建java目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]<span class="comment"># mkdir/usr/java</span></div><div class="line">[root@localhost ~]<span class="comment"># cd /usr/java</span></div></pre></td></tr></table></figure></p>
-<p>2.解压jdk<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@localhost java]<span class="comment"># tar -zxvf jdk-7u79-linux-x64.tar.gz</span></div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>3.设置环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@localhost java]<span class="comment"># vi /etc/profile</span></div></pre></td></tr></table></figure></p>
-<p>在打开的profile文件中添加如下内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#set java environment</span></div><div class="line">JAVA_HOME=/usr/java/jdk1.7.0_79</div><div class="line">JRE_HOME=/usr/java/jdk1.7.0_79/jre</div><div class="line">CLASS_PATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JRE_HOME</span>/lib</div><div class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JRE_HOME</span>/bin</div><div class="line"><span class="built_in">export</span> JAVA_HOME JRE_HOME CLASS_PATH PATH</div></pre></td></tr></table></figure></p>
-<p>让修改生效<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@localhost java]<span class="comment"># source /etc/profile</span></div></pre></td></tr></table></figure></p>
-<p>4.验证JDK有效性<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@localhost java]<span class="comment"># java -version</span></div><div class="line">java version <span class="string">"1.7.0_79"</span></div><div class="line">Java(TM) SE Runtime Environment (build 1.7.0_79-b15)</div><div class="line">Java HotSpot(TM) 64-Bit Server VM (build 24.79-b02, mixed mode)</div></pre></td></tr></table></figure></p>
-<p>5.linux安装tomcat 直接解压即可</p>
+        <p>1.根据表的情况，如果表的id记录自增，不会删除表中的记录，可以通过<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">selec max（id） from tablename</div></pre></td></tr></table></figure></p>
+<p>2.﻿ 翻页查询的优化,随着记录数的增加，limit会越来越慢，例如limit 850000,50，这是可以通过id between 850000 and 850050语句优化<br><a id="more"></a><br>3.建立联合索引<br>    &nbsp;如何选择联合索引顺序<br>    &nbsp; &nbsp; &nbsp;1.经常会被使用到的列优先<br>    &nbsp; &nbsp; &nbsp;2.选择性高的列优先（离散度大的列 即 select count（distinct  column_name） from table 值越大），但实际情况往往会不一样<br>    &nbsp; &nbsp; &nbsp;3.宽度小的列优先<br>    联合索引匹配规则：最左匹配 or联合索引无效<br>    idx_a_b_c(a,b,c) 能够可以支持a | a,b| a,b,c 3种组合进行查找，但不支持 b,c进行查找<br>向表中添加一条联合索引<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ALTER TABLE webchat_lbs add index idx_l_m_p(location_id,meters,people_id)</div></pre></td></tr></table></figure></p>
+<p>通过 explain sql查询计划，key说明用到了刚刚创建的索引 idx_l_m_p，extra列说明查询用到了覆盖索引(using index),但同时用到了创建临时表和文件排序会很耗时，sql执行时间0.513s</p>
+<p><img src="http://ovc1p8kdo.bkt.clouddn.com/sql_lianhe.png" width="600" height="100" style="margin-left: 0px;"><br>表中重新创建索引（符合创建联合索引：选择性高的列优先）<br>在webchat_lbs 中 people_id的总数最多，所以people_id列应放在联合索引最左边</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ALTER TABLE webchat_lbs add index idx_p_m_l(people_id,meters,location_id)</div></pre></td></tr></table></figure>
+<p>通过执行explain sql执行计划，发现没有用到刚刚创建的索引idx_p_m_l,于是通过使用force index 或 use index强制使用某一个索引</p>
+<p><img src="http://ovc1p8kdo.bkt.clouddn.com/%E5%BC%BA%E5%88%B6%E7%B4%A2%E5%BC%95.png" width="600" height="100" style="margin-left: 0px;"><br>通过sql的执行计划，可以看出查询索引用的是刚刚新建的idx_p_m_l，extra用的是覆盖索引而且没有创建临时表和排序，但rows显示扫描了5244932行记录，执行这条sql语句发现耗时2.265s，比使用idx_l_m_p索引多消耗1.7秒多。<br>4.覆盖索引（use index）<br>即数据查询可以通过索引查询，不需要通过回表查询<br>索引的条数小于表的记录数，只读索引，减少I/O操作，尽量使用覆盖索引，可以通过创建联合索引<br>5.like查询只有前匹配会走索引</p>
 
       
     </div>
@@ -355,7 +357,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/linux/" rel="tag"># linux</a>
+            <a href="/tags/msyql/" rel="tag"># msyql</a>
           
         </div>
       
@@ -368,8 +370,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/13/linux/" rel="next" title="linux">
-                <i class="fa fa-chevron-left"></i> linux
+              <a href="/2018/07/31/shadowsock/" rel="next" title="shadowsock 科学上网">
+                <i class="fa fa-chevron-left"></i> shadowsock 科学上网
               </a>
             
           </div>
@@ -377,10 +379,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/30/linux-mysql/" rel="prev" title="linux mysql安装">
-                linux mysql安装 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
