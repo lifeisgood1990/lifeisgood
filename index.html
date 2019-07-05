@@ -263,6 +263,253 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dobetter.site/2019/07/05/mysql锁/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YF">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/title.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yang's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/05/mysql锁/" itemprop="url">mysql锁</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-05T19:41:06+08:00">
+                2019-07-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="mysql锁"><a href="#mysql锁" class="headerlink" title="mysql锁"></a>mysql锁</h1><h3 id="1-悲观锁"><a href="#1-悲观锁" class="headerlink" title="1.悲观锁"></a>1.悲观锁</h3><h3 id="操作数据时默认认为其他人也会对数据进行修改，分为排他锁和共享锁。"><a href="#操作数据时默认认为其他人也会对数据进行修改，分为排他锁和共享锁。" class="headerlink" title="操作数据时默认认为其他人也会对数据进行修改，分为排他锁和共享锁。"></a>操作数据时默认认为其他人也会对数据进行修改，分为排他锁和共享锁。</h3><h3 id="排他锁（独占锁，写锁）"><a href="#排他锁（独占锁，写锁）" class="headerlink" title="排他锁（独占锁，写锁）"></a>排他锁（独占锁，写锁）</h3><p>获取锁后，其他事务不能对该数据进行读写，select操作加排他锁select * from T ··· for update，update、delete、insert操作默认会加排他锁。</p>
+<p>终端A，开启事务A<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">begin;</div><div class="line">select id,name,login_name from sys_user <span class="built_in">where</span> name = <span class="string">"tom"</span> <span class="keyword">for</span> update;</div><div class="line">update sys_user <span class="built_in">set</span> login_name = <span class="string">"tom"</span> <span class="built_in">where</span> name = <span class="string">"tom"</span>;</div><div class="line">commit;</div></pre></td></tr></table></figure></p>
+<p>终端B，开启事务B，事务B想要对name为tom这行数据操作，必须等待事务A提交<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">begin;</div><div class="line">select id,name,login_name from sys_user <span class="built_in">where</span> name = <span class="string">"tom"</span> <span class="keyword">for</span> update;</div><div class="line">等待事务A commit</div><div class="line">update sys_user <span class="built_in">set</span> login_name = <span class="string">"tom1"</span> <span class="built_in">where</span> name = <span class="string">"tom"</span>;</div><div class="line">commit;</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select id,name,login_name from sys_user <span class="built_in">where</span> name = <span class="string">"tom"</span> <span class="keyword">for</span> update;</div></pre></td></tr></table></figure>
+<p>注意: <br><br>1.必须开启事务，否则单独的使用是不会加锁的;<br><br>2.name字段加索引是行级锁，对同一行进行查询会产生排他锁，如果对其他行查询则不会产生排他锁;<br><br>3.如果name字段没有索引，则对name查询会产生表级锁，对不同列行查询也会产生排他锁。</p>
+<h3 id="共享锁（读锁）"><a href="#共享锁（读锁）" class="headerlink" title="共享锁（读锁）"></a>共享锁（读锁）</h3><p>任何事务只能对数据进行读取，不能修改数据直到其他事务提交。</p>
+<p>终端A，开启事务A<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">begin;</div><div class="line">select id,name,login_name from sys_user <span class="built_in">where</span> name = <span class="string">"tom1"</span> lock <span class="keyword">in</span> share mode;</div><div class="line">commit;</div></pre></td></tr></table></figure></p>
+<p>终端B，开启事务B<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">begin;</div><div class="line">select id,name,login_name from sys_user <span class="built_in">where</span> name = <span class="string">"tom1"</span> lock <span class="keyword">in</span> share mode;</div><div class="line">update sys_user <span class="built_in">set</span> role_grade = role_grade +1 <span class="built_in">where</span> name = <span class="string">"tom1"</span>;</div><div class="line">等待其他事务提交，否则超时</div><div class="line">commit;</div></pre></td></tr></table></figure></p>
+<h3 id="2-乐观锁"><a href="#2-乐观锁" class="headerlink" title="2.乐观锁"></a>2.乐观锁</h3><h3 id="操作数据时默认其他用户不会对数据进行操作"><a href="#操作数据时默认其他用户不会对数据进行操作" class="headerlink" title="操作数据时默认其他用户不会对数据进行操作"></a>操作数据时默认其他用户不会对数据进行操作</h3><p>通过对表添加一个version字段，每次查询获取version的值，更新是将version作为where条件，或者根据你查询出的字段值进行判断，比如库存stock。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">select id, name,version from sys_user <span class="built_in">where</span> id = 1;</div><div class="line">update sys_user <span class="built_in">set</span> name = <span class="string">"tom"</span>,version = version + 1 <span class="built_in">where</span> id = <span class="comment">#&#123;id&#125; and version = #&#123;version&#125;;</span></div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dobetter.site/2019/04/02/pyl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YF">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/title.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yang's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/02/pyl/" itemprop="url">pyl</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-02T20:22:47+08:00">
+                2019-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://dobetter.site/2018/08/04/mysql表设计/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -374,263 +621,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://dobetter.site/2018/08/04/mysql-优化/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YF">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/title.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yang's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/04/mysql-优化/" itemprop="url">mysql 优化</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-04T18:47:04+08:00">
-                2018-08-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>1.根据表的情况，如果表的id记录自增，不会删除表中的记录，可以通过<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">selec max（id） from tablename</div></pre></td></tr></table></figure></p>
-<p>2.﻿ 翻页查询的优化,随着记录数的增加，limit会越来越慢，例如limit 850000,50，这是可以通过id between 850000 and 850050语句优化<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/04/mysql-优化/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://dobetter.site/2018/07/31/shadowsock/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YF">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/title.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yang's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/31/shadowsock/" itemprop="url">shadowsock 科学上网</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-31T19:37:33+08:00">
-                2018-07-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>使用shadowsock + vultr 搭梯子科学上网</p>
-<p>进入<a href="https://www.vultr.com/" target="_blank" rel="external">https://www.vultr.com/</a> 网站购买服务<br>第一次选择日本的服务器 但是ping不通，而后选择纽约的服务器系统是ubuntu<br>ssh 连接服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh root@remote_ip</div></pre></td></tr></table></figure></p>
-<p>配置服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">apt-get install python-pip python-gevent python-m2crypto</div><div class="line">pip install --upgrade setuptools</div></pre></td></tr></table></figure></p>
-<p>安装Shadowsocks<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install shadowsocks</div></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/31/shadowsock/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -676,7 +671,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -731,7 +726,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

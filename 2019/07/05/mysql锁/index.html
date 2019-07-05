@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="jquery," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -94,18 +94,17 @@
 
 
 
-<meta name="description" content="String –&amp;gt; JSON1JSON.parse(data) JSON –&amp;gt; String1JSON.stringify(data) select selected12$(&apos;#linkWay input[value=&apos;+data.linkWay+&apos;]&apos;).attr(&quot;checked&quot;,true);$(&apos;#ownerId option[value=&apos;+data.owner.id+&apos;]&apos;">
-<meta name="keywords" content="jquery">
+<meta name="description" content="mysql锁1.悲观锁操作数据时默认认为其他人也会对数据进行修改，分为排他锁和共享锁。排他锁（独占锁，写锁）获取锁后，其他事务不能对该数据进行读写，select操作加排他锁select * from T ··· for update，update、delete、insert操作默认会加排他锁。 终端A，开启事务A1234begin;select id,name,login_name from sy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="About jquery">
-<meta property="og:url" content="http://dobetter.site/2017/08/25/jquery/index.html">
+<meta property="og:title" content="mysql锁">
+<meta property="og:url" content="http://dobetter.site/2019/07/05/mysql锁/index.html">
 <meta property="og:site_name" content="Yang&#39;s Notes">
-<meta property="og:description" content="String –&amp;gt; JSON1JSON.parse(data) JSON –&amp;gt; String1JSON.stringify(data) select selected12$(&apos;#linkWay input[value=&apos;+data.linkWay+&apos;]&apos;).attr(&quot;checked&quot;,true);$(&apos;#ownerId option[value=&apos;+data.owner.id+&apos;]&apos;">
+<meta property="og:description" content="mysql锁1.悲观锁操作数据时默认认为其他人也会对数据进行修改，分为排他锁和共享锁。排他锁（独占锁，写锁）获取锁后，其他事务不能对该数据进行读写，select操作加排他锁select * from T ··· for update，update、delete、insert操作默认会加排他锁。 终端A，开启事务A1234begin;select id,name,login_name from sy">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-14T14:52:24.000Z">
+<meta property="og:updated_time" content="2019-07-05T11:44:19.704Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="About jquery">
-<meta name="twitter:description" content="String –&amp;gt; JSON1JSON.parse(data) JSON –&amp;gt; String1JSON.stringify(data) select selected12$(&apos;#linkWay input[value=&apos;+data.linkWay+&apos;]&apos;).attr(&quot;checked&quot;,true);$(&apos;#ownerId option[value=&apos;+data.owner.id+&apos;]&apos;">
+<meta name="twitter:title" content="mysql锁">
+<meta name="twitter:description" content="mysql锁1.悲观锁操作数据时默认认为其他人也会对数据进行修改，分为排他锁和共享锁。排他锁（独占锁，写锁）获取锁后，其他事务不能对该数据进行读写，select操作加排他锁select * from T ··· for update，update、delete、insert操作默认会加排他锁。 终端A，开启事务A1234begin;select id,name,login_name from sy">
 
 
 
@@ -134,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://dobetter.site/2017/08/25/jquery/"/>
+  <link rel="canonical" href="http://dobetter.site/2019/07/05/mysql锁/"/>
 
 
 
 
 
-  <title>About jquery | Yang's Notes</title>
+  <title>mysql锁 | Yang's Notes</title>
   
 
 
@@ -263,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://dobetter.site/2017/08/25/jquery/">
+    <link itemprop="mainEntityOfPage" href="http://dobetter.site/2019/07/05/mysql锁/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YF">
@@ -280,7 +279,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">About jquery</h2>
+          <h2 class="post-title" itemprop="name headline">mysql锁</h2>
         
 
         <div class="post-meta">
@@ -292,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T14:53:24+08:00">
-                2017-08-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-05T19:41:06+08:00">
+                2019-07-05
               </time>
             
 
@@ -330,13 +329,15 @@
       
 
       
-        <h3 id="String-–-gt-JSON"><a href="#String-–-gt-JSON" class="headerlink" title="String –&gt; JSON"></a>String –&gt; JSON</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">JSON.parse(data)</div></pre></td></tr></table></figure>
-<h3 id="JSON-–-gt-String"><a href="#JSON-–-gt-String" class="headerlink" title="JSON –&gt; String"></a>JSON –&gt; String</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">JSON.stringify(data)</div></pre></td></tr></table></figure>
-<h3 id="select-selected"><a href="#select-selected" class="headerlink" title="select selected"></a>select selected</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#linkWay input[value='</span>+data.linkWay+<span class="string">']'</span>).attr(<span class="string">"checked"</span>,<span class="literal">true</span>);</div><div class="line">$(<span class="string">'#ownerId option[value='</span>+data.owner.id+<span class="string">']'</span>).attr(<span class="string">"selected"</span>,<span class="literal">true</span>);</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="获取父页面"><a href="#获取父页面" class="headerlink" title="获取父页面"></a>获取父页面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(selector,window.parent.document)</div></pre></td></tr></table></figure>
-<h3 id="get-url-parameters-using-javascript"><a href="#get-url-parameters-using-javascript" class="headerlink" title="get url parameters using javascript"></a>get url parameters using javascript</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var getUrlParameter = <span class="keyword">function</span> getUrlParameter(sParam) &#123;</div><div class="line">    var sPageURL = decodeURIComponent(window.location.search.substring(1)),</div><div class="line">    sURLVariables = sPageURL.split(<span class="string">'&amp;'</span>),</div><div class="line">    sParameterName,</div><div class="line">    i;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (i = 0; i &lt; sURLVariables.length; i++) &#123;</div><div class="line">        sParameterName = sURLVariables[i].split(<span class="string">'='</span>);</div><div class="line">        <span class="keyword">if</span> (sParameterName[0] === sParam) &#123;</div><div class="line">            <span class="built_in">return</span> sParameterName[1] === undefined ? <span class="literal">true</span> : sParameterName[1];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">http://dummy.com/?technology=jquery&amp;blog=jquerybyexample.</div><div class="line">var tech = getUrlParameter(<span class="string">'technology'</span>);</div><div class="line">var blog = getUrlParameter(<span class="string">'blog'</span>);</div></pre></td></tr></table></figure>
-<h3 id="for／in-遍历对象，for遍历数组"><a href="#for／in-遍历对象，for遍历数组" class="headerlink" title="for／in 遍历对象，for遍历数组"></a>for／in 遍历对象，for遍历数组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var city = &#123;name:<span class="string">'nanjing'</span>,code:<span class="string">'o25'</span>&#125;;</div><div class="line"><span class="keyword">for</span>(var key <span class="keyword">in</span> city)&#123;</div><div class="line">    console.log(key + <span class="string">'----'</span> + city[key])</div><div class="line">&#125;</div><div class="line">name ---- nanjing</div></pre></td></tr></table></figure>
+        <h1 id="mysql锁"><a href="#mysql锁" class="headerlink" title="mysql锁"></a>mysql锁</h1><h3 id="1-悲观锁"><a href="#1-悲观锁" class="headerlink" title="1.悲观锁"></a>1.悲观锁</h3><h3 id="操作数据时默认认为其他人也会对数据进行修改，分为排他锁和共享锁。"><a href="#操作数据时默认认为其他人也会对数据进行修改，分为排他锁和共享锁。" class="headerlink" title="操作数据时默认认为其他人也会对数据进行修改，分为排他锁和共享锁。"></a>操作数据时默认认为其他人也会对数据进行修改，分为排他锁和共享锁。</h3><h3 id="排他锁（独占锁，写锁）"><a href="#排他锁（独占锁，写锁）" class="headerlink" title="排他锁（独占锁，写锁）"></a>排他锁（独占锁，写锁）</h3><p>获取锁后，其他事务不能对该数据进行读写，select操作加排他锁select * from T ··· for update，update、delete、insert操作默认会加排他锁。</p>
+<p>终端A，开启事务A<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">begin;</div><div class="line">select id,name,login_name from sys_user <span class="built_in">where</span> name = <span class="string">"tom"</span> <span class="keyword">for</span> update;</div><div class="line">update sys_user <span class="built_in">set</span> login_name = <span class="string">"tom"</span> <span class="built_in">where</span> name = <span class="string">"tom"</span>;</div><div class="line">commit;</div></pre></td></tr></table></figure></p>
+<p>终端B，开启事务B，事务B想要对name为tom这行数据操作，必须等待事务A提交<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">begin;</div><div class="line">select id,name,login_name from sys_user <span class="built_in">where</span> name = <span class="string">"tom"</span> <span class="keyword">for</span> update;</div><div class="line">等待事务A commit</div><div class="line">update sys_user <span class="built_in">set</span> login_name = <span class="string">"tom1"</span> <span class="built_in">where</span> name = <span class="string">"tom"</span>;</div><div class="line">commit;</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select id,name,login_name from sys_user <span class="built_in">where</span> name = <span class="string">"tom"</span> <span class="keyword">for</span> update;</div></pre></td></tr></table></figure>
+<p>注意: <br><br>1.必须开启事务，否则单独的使用是不会加锁的;<br><br>2.name字段加索引是行级锁，对同一行进行查询会产生排他锁，如果对其他行查询则不会产生排他锁;<br><br>3.如果name字段没有索引，则对name查询会产生表级锁，对不同列行查询也会产生排他锁。</p>
+<h3 id="共享锁（读锁）"><a href="#共享锁（读锁）" class="headerlink" title="共享锁（读锁）"></a>共享锁（读锁）</h3><p>任何事务只能对数据进行读取，不能修改数据直到其他事务提交。</p>
+<p>终端A，开启事务A<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">begin;</div><div class="line">select id,name,login_name from sys_user <span class="built_in">where</span> name = <span class="string">"tom1"</span> lock <span class="keyword">in</span> share mode;</div><div class="line">commit;</div></pre></td></tr></table></figure></p>
+<p>终端B，开启事务B<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">begin;</div><div class="line">select id,name,login_name from sys_user <span class="built_in">where</span> name = <span class="string">"tom1"</span> lock <span class="keyword">in</span> share mode;</div><div class="line">update sys_user <span class="built_in">set</span> role_grade = role_grade +1 <span class="built_in">where</span> name = <span class="string">"tom1"</span>;</div><div class="line">等待其他事务提交，否则超时</div><div class="line">commit;</div></pre></td></tr></table></figure></p>
+<h3 id="2-乐观锁"><a href="#2-乐观锁" class="headerlink" title="2.乐观锁"></a>2.乐观锁</h3><h3 id="操作数据时默认其他用户不会对数据进行操作"><a href="#操作数据时默认其他用户不会对数据进行操作" class="headerlink" title="操作数据时默认其他用户不会对数据进行操作"></a>操作数据时默认其他用户不会对数据进行操作</h3><p>通过对表添加一个version字段，每次查询获取version的值，更新是将version作为where条件，或者根据你查询出的字段值进行判断，比如库存stock。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">select id, name,version from sys_user <span class="built_in">where</span> id = 1;</div><div class="line">update sys_user <span class="built_in">set</span> name = <span class="string">"tom"</span>,version = version + 1 <span class="built_in">where</span> id = <span class="comment">#&#123;id&#125; and version = #&#123;version&#125;;</span></div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -352,12 +353,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/jquery/" rel="tag"># jquery</a>
-          
-        </div>
-      
 
       
       
@@ -367,8 +362,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/23/hexo/" rel="next" title="Hexo 安装">
-                <i class="fa fa-chevron-left"></i> Hexo 安装
+              <a href="/2019/04/02/pyl/" rel="next" title="pyl">
+                <i class="fa fa-chevron-left"></i> pyl
               </a>
             
           </div>
@@ -376,10 +371,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/25/IDEA-shortcut-key/" rel="prev" title="IDEA shortcut key">
-                IDEA shortcut key <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -504,7 +495,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#String-–-gt-JSON"><span class="nav-number">1.</span> <span class="nav-text">String –> JSON</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON-–-gt-String"><span class="nav-number">2.</span> <span class="nav-text">JSON –> String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#select-selected"><span class="nav-number">3.</span> <span class="nav-text">select selected</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取父页面"><span class="nav-number">4.</span> <span class="nav-text">获取父页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get-url-parameters-using-javascript"><span class="nav-number">5.</span> <span class="nav-text">get url parameters using javascript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for／in-遍历对象，for遍历数组"><span class="nav-number">6.</span> <span class="nav-text">for／in 遍历对象，for遍历数组</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql锁"><span class="nav-number">1.</span> <span class="nav-text">mysql锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-悲观锁"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.悲观锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作数据时默认认为其他人也会对数据进行修改，分为排他锁和共享锁。"><span class="nav-number">1.0.2.</span> <span class="nav-text">操作数据时默认认为其他人也会对数据进行修改，分为排他锁和共享锁。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排他锁（独占锁，写锁）"><span class="nav-number">1.0.3.</span> <span class="nav-text">排他锁（独占锁，写锁）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共享锁（读锁）"><span class="nav-number">1.0.4.</span> <span class="nav-text">共享锁（读锁）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-乐观锁"><span class="nav-number">1.0.5.</span> <span class="nav-text">2.乐观锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作数据时默认其他用户不会对数据进行操作"><span class="nav-number">1.0.6.</span> <span class="nav-text">操作数据时默认其他用户不会对数据进行操作</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
